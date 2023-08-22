@@ -87,3 +87,32 @@ function replicate(replicateNum, value, arr = []) {
     arr.push(value)
     return replicate(replicateNum - 1, value, arr)
 }
+
+
+function fibs(n) {
+    const arr = []
+    if (n <= 0) {
+        return arr
+    }
+
+    arr.push(0)
+    if (n > 1) {
+        arr.push(1)
+    }
+    for (let i = 2; i < n; i++) {
+        arr.push(arr[i - 1] + arr[i - 2])
+    }
+
+    return arr
+}
+
+function fibsRec(n, arr = []) {
+    if (n <= 2 && n >= 0) {
+        arr.push(0)
+        arr.push(1)
+    } else if (n > 2) {
+        arr = fibsRec(n - 1, arr)
+        arr.push(arr[arr.length - 1] + arr[arr.length - 2])
+    }
+    return arr
+}
