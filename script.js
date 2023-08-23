@@ -116,3 +116,39 @@ function fibsRec(n, arr = []) {
     }
     return arr
 }
+
+function mergeSort(array) {
+    const arr = [...array]
+    if (arr.length < 2) {
+        return arr
+    }
+
+    const startIndex = 0
+    const middleIndex = Math.floor(arr.length / 2)
+    const leftArr = arr.slice(startIndex, middleIndex)
+    const rightArr = arr.slice(middleIndex)
+
+    return merge(
+        mergeSort(leftArr), 
+        mergeSort(rightArr)
+    )
+}
+function merge(arrLeft, arrRight) {
+    const arr = []
+    let arrLeftIndex = 0
+    let arrRightIndex = 0
+    
+    while (arrLeftIndex < arrLeft.length && arrRightIndex < arrRight.length) {
+        const currentLeftItem = arrLeft[arrLeftIndex]
+        const currentRightItem = arrRight[arrRightIndex]
+        if (currentLeftItem < currentRightItem) {
+            arr.push(currentLeftItem)
+            arrLeftIndex++
+        } else {
+            arr.push(currentRightItem)
+            arrRightIndex++
+        }
+    }
+
+    return [...arr, ...arrLeft.slice(arrLeftIndex), ...arrRight.slice(arrRightIndex)] 
+}
