@@ -150,5 +150,26 @@ function merge(arrLeft, arrRight) {
         }
     }
 
-    return [...arr, ...arrLeft.slice(arrLeftIndex), ...arrRight.slice(arrRightIndex)] 
+    arr.push(...arrLeft.slice(arrLeftIndex))
+    arr.push(...arrRight.slice(arrRightIndex))
+    return arr
+}
+
+function sumMultiples3and5(maxNumber, current = maxNumber - 1) {
+    if (current === 3) {
+        return current
+    } else if (current % 3 === 0 || current % 5 === 0) {
+        return current + sumMultiples3and5(maxNumber, current - 1)
+    } else {
+        return sumMultiples3and5(maxNumber, current - 1)
+    }
+}
+
+function sumEvenFibs(n) {
+    return fibsRec(n).reduce((acc, num) => { 
+        if (num % 2 === 0) {
+            return num + acc
+        }
+        return acc
+    }, 0)
 }
